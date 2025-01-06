@@ -80,11 +80,25 @@ class SecurityMentor {
      * Creates personalized guidance based on analysis and profile
      */
     async createPersonalizedGuidance(analysis, profile) {
+        // Build comprehensive learning paths
+        const learningPath = {
+            fundamentals: this.createFoundationalConcepts(analysis),
+            practical: await this.generateHandsOnExercises(analysis),
+            advanced: this.buildAdvancedTopics(analysis),
+            assessments: this.createProgressiveAssessments(profile)
+        };
+
+        // Generate context-aware explanations
+        const conceptualFramework = {
+            basicPrinciples: this.explainCoreConcepts(),
+            realWorldExamples: this.provideContextualExamples(),
+            commonMisconceptions: this.addressTypicalChallenges()
+        };
+
         return {
             immediate: await this.generateImmediateGuidance(analysis, profile),
-            learning: await this.createLearningPath(analysis, profile),
-            exercises: await this.generatePracticalExercises(analysis, profile),
-            explanations: await this.createConceptExplanations(analysis, profile),
+            learning: learningPath,
+            conceptual: conceptualFramework,
             progression: await this.planProgressionPath(analysis, profile)
         };
     }

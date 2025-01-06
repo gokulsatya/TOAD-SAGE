@@ -93,7 +93,27 @@ class FrameworkGuide {
             safeguards: await this.recommendAtlasSafeguards(incident)
         };
     }
+    async analyzeWithFrameworks(incident) {
+        const frameworks = {
+            mitre: await this.analyzeMitreAttack(incident),
+            nist: await this.analyzeNistFramework(incident),
+            iso27001: await this.analyzeISOStandards(incident),
+            cloudSecurity: await this.analyzeCloudSecurityAlliance(incident)
+        };
 
+        // Cross-framework analysis
+        const correlations = this.correlateFrameworkInsights(frameworks);
+        
+        // Generate practical recommendations
+        const recommendations = this.generateActionableGuidance(correlations);
+
+        return {
+            frameworkAnalysis: frameworks,
+            correlations,
+            recommendations,
+            learningPath: this.createFrameworkLearningPath(frameworks)
+        };
+    }
     /**
      * Generates educational context and learning resources based on analysis
      */

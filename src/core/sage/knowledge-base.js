@@ -27,6 +27,20 @@ class KnowledgeBase {
      * and their relationships
      */
     async initializeKnowledgeBase() {
+        // Expanded security concepts categorization
+        const securityDomains = {
+            networkSecurity: this.initializeNetworkSecurityConcepts(),
+            applicationSecurity: this.initializeApplicationSecurityConcepts(),
+            cloudSecurity: this.initializeCloudSecurityConcepts(),
+            incidentResponse: this.initializeIncidentResponseFramework()
+        };
+
+        // Comprehensive threat pattern mapping
+        const threatPatterns = {
+            signatures: this.loadThreatSignatures(),
+            behaviors: this.loadAttackerBehaviors(),
+            mitigations: this.loadMitigationStrategies()
+        };
         try {
             // Load core security concepts
             const concepts = await this.loadSecurityConcepts();
@@ -256,7 +270,34 @@ class KnowledgeBase {
      * Loads security concepts from data store
      */
     async loadSecurityConcepts() {
-        return require('../../data/knowledge/security-concepts.json');
+        try {
+            // First check cache
+            const cachedConcepts = await this.checkConceptCache();
+            if (cachedConcepts) {
+                return cachedConcepts;
+            }
+    
+            // If not in cache, load from data store
+            const concepts = require('../../data/knowledge/security-concepts.json');
+            
+            // Enhance concepts with relationships and metadata
+            const enhancedConcepts = concepts.map(concept => ({
+                ...concept,
+                lastUpdated: new Date().toISOString(),
+                relationships: this.buildConceptRelationships(concept),
+                difficulty: this.assessConceptDifficulty(concept),
+                prerequisites: this.identifyPrerequisites(concept)
+            }));
+    
+            // Cache the enhanced concepts
+            await this.updateConceptCache(enhancedConcepts);
+    
+            return enhancedConcepts;
+        } catch (error) {
+            console.error('Failed to load security concepts:', error);
+            // Fallback to basic concepts if loading fails
+            return require('../../data/knowledge/basic-concepts.json');
+        }
     }
 
     /**
