@@ -1,6 +1,6 @@
-# TOAD-SAGE
+# 🐸 TOAD SAGE
 Threat Operations &amp; Analysis Dashboard - Security Analysis Guidance Engine  | An AI-powered security analyst companion that combines real-time analysis with educational guidance
-# TOAD SAGE
+# 🐸 TOAD SAGE
 
 ## Threat Operations & Analysis Dashboard - Security Analysis Guidance Engine
 
@@ -63,7 +63,7 @@ npm run build
 
 ### Usage
 
-1. Click the TOAD SAGE icon in your browser
+1. Click the TOAD SAGE🐸 icon in your browser
 2. Input or paste security incident details
 3. Review the analysis, which includes:
    - Threat assessment
@@ -73,7 +73,7 @@ npm run build
 
 ### Architecture
 
-TOAD SAGE follows a modular architecture:
+TOAD SAGE🐸 follows a modular architecture:
 
 ```
 toad-sage/
@@ -132,6 +132,6 @@ For support, please:
 
 ---
 
-**Note**: TOAD SAGE is designed to assist security analysts but should not be the sole tool for security decisions. Always follow your organization's security protocols and guidelines.
+**Note**: TOAD SAGE🐸 is designed to assist security analysts but should not be the sole tool for security decisions. Always follow your organization's security protocols and guidelines.
 
-Made with ❤️ by [Gokul Sathiyamurthy]
+Made with ❤️ by [Gokul Satya]
